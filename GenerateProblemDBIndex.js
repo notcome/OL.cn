@@ -1,77 +1,42 @@
+"use strict";
+
 var fs = require('fs');
 var async = require('async');
+var suspend = require('suspend');
+var resume = suspend.resume;
 var _ = require('underscore');
 
-function makeRelativePathCall (prefix, func) {
-  return function (relativePath, callback) {
-    func(prefix + '/' + relativePath, callback);
-  } 
-}
+var isProblemDir = dirname => _.toArray(dirname).indexOf('-') != -1;
 
-function isProblemDir (dirname) {
-  for (var i = 0; i < dirname.length; i ++)
-    if (dirname[i] == '-')
-      return true;
-  return false;
-}
+var listSubDirs = suspend.async(function* (dirpath) {
+  var files = yield fs.readdir(dirpath, resume());
+  files = files.filter(name => name[0] != '.');
 
-function listSubDirs (dirpath, callback) {
-  fs.readdir(dirpath, function (err, files) {
-    if (err) return callback(err);
-    
-    files = files.filter(function (name) { return name[0] != '.'; });
-    async.map(files, makeRelativePathCall(dirpath, fs.stat), function (err, stats) {
-      if (err) return callback(err);
-
-      var results = files.filter(function (name, index) {
-        return stats[index].isDirectory();
-      });
-
-      callback(null, results);
-    });
-  });
-}
-
-function addToDB (dirpath, callback) {
-  var results = { type: 'group' };
-  var relativePath = dirpath.slice(basedir.length + 1);
-
-  listSubDirs(dirpath, function (err, dirs) {
-    if (err) return callback(err);
-
-    var partition = _.partition(dirs, isProblemDir);
-    var problemDirs = partition[0],
-        groupDirs = partition[1];
-
-    addProblemDirsToDB(problemDirs);
-    addGroupDirsToDB(groupDirs);
-  });
-
-  function addProblemDirsToDB(problemDirs) {
-    problemDirs.forEach(function (name) {
-      results[name] = {
-        type: 'problem',
-        path: relativePath + '/' + name
-      };
-    });
-  }
-
-  function addGroupDirsToDB(groupDirs) {
-    async.map(groupDirs, makeRelativePathCall(dirpath, addToDB), function (err, slices) {
-      if (err) return callback(err);
-
-      for (var i = 0; i < slices.length; i ++)
-        results[groupDirs[i]] = slices[i];
-
-      callback(null, results);
-    });
-  }
-}
-
-var basedir = __dirname + '/documents/problems';
-
-addToDB(basedir, function (err, problemDB) {
-  if (err)
-    throw err;
-  console.log(JSON.stringify(problemDB, null, 2));
+  var stats = yield async.map(files.map(name => dirpath + '/' + name), fs.stat, resume());
+  var results = files.filter((name, index) => stats[index].isDirectory());
+  return results;
 });
+
+var addToCollection = suspend.async(function* (basedir, relativePath) {
+  var absolutePath = basedir + '/' + relativePath;
+  var results = {};
+
+  var subdirs = yield listSubDirs(absolutePath, resume());
+  var [problems, groups] = _.partition(subdirs, isProblemDir);
+
+  if (problems.length)
+    results.problems = _.object(problems, problems.map(name => relativePath + '/' + name));
+
+  if (groups.length) {
+    var collections = yield async.map(groups.map(name => relativePath + '/' + name),
+                                      _.partial(addToCollection, basedir),
+                                      resume());
+    results.groups = _.object(groups, collections);
+  }
+
+  return results;
+});
+
+var basedir = __dirname + '/documents';
+
+module.exports = _.partial(basedir, 'problems');
