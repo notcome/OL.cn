@@ -1,17 +1,12 @@
 var fs = require('fs');
+var async = require('async');
+var _ = require('underscore');
 
-function callbackOnlyOnce (cb) {
-  var hasCalledBack = false;
-  return function () {
-    if (hasCalledBack)
-      return;
-    hasCalledBack = true;
-    cb.apply(this, arguments);
-  }
+function makeRelativePathCall (prefix, func) {
+  return function (relativePath, callback) {
+    func(prefix + '/' + relativePath, callback);
+  } 
 }
-
-var basedir = __dirname + '/documents/problems';
-var problemDB = {};
 
 function isProblemDir (dirname) {
   for (var i = 0; i < dirname.length; i ++)
@@ -20,71 +15,62 @@ function isProblemDir (dirname) {
   return false;
 }
 
-function addToDB (dirPath, cb) {
-  var callback = callbackOnlyOnce(cb);
+function listSubDirs (dirpath, callback) {
+  fs.readdir(dirpath, function (err, files) {
+    if (err) return callback(err);
+    
+    files = files.filter(function (name) { return name[0] != '.'; });
+    async.map(files, makeRelativePathCall(dirpath, fs.stat), function (err, stats) {
+      if (err) return callback(err);
 
-  fs.readdir(dirPath, function (err, files) {
+      var results = files.filter(function (name, index) {
+        return stats[index].isDirectory();
+      });
+
+      callback(null, results);
+    });
+  });
+}
+
+function addToDB (dirpath, callback) {
+  var results = { type: 'group' };
+  var relativePath = dirpath.slice(basedir.length + 1);
+
+  listSubDirs(dirpath, function (err, dirs) {
     if (err) return callback(err);
 
-    var isProblemDir = false;
-    for (var i = 0; i < files.length; i ++)
-      if (files[i] == 'problem.jade') {
-        isProblemDir = true;
-        break;
-      }
+    var partition = _.partition(dirs, isProblemDir);
+    var problemDirs = partition[0],
+        groupDirs = partition[1];
 
-    if (isProblemDir)
-      addThisProblemToDB();
-    else
-      addSubDirsToDB(files);
+    addProblemDirsToDB(problemDirs);
+    addGroupDirsToDB(groupDirs);
   });
 
-  function addThisProblemToDB () {
-    var relativePath = dirPath.slice(basedir.length + 1);
-    var groupPath = relativePath.split('/');
-
-    var handle = problemDB;
-    for (var i = 0; i < groupPath.length; i ++) {
-      var subGroup = groupPath[i];
-
-      if (!handle.hasOwnProperty(subGroup))
-        handle[subGroup] = { type: 'group' };
-      handle = handle[subGroup];
-    }
-
-    handle.type = 'problem';
-    handle.path = dirPath + '/problem.jade';
-    callback();
+  function addProblemDirsToDB(problemDirs) {
+    problemDirs.forEach(function (name) {
+      results[name] = {
+        type: 'problem',
+        path: relativePath + '/' + name
+      };
+    });
   }
 
-  function addSubDirsToDB (files) {
-    var counter = 0;
-    files.forEach(function (file) {
-      if (file[0] == '.')
-        return;
+  function addGroupDirsToDB(groupDirs) {
+    async.map(groupDirs, makeRelativePathCall(dirpath, addToDB), function (err, slices) {
+      if (err) return callback(err);
 
-      counter ++;
-      fs.stat(dirPath + '/' + file, function (err, stats) {
-        if (!stats.isDirectory()) {
-          counter --;
-          if (counter == 0)
-            callback();
-          return;
-        }
+      for (var i = 0; i < slices.length; i ++)
+        results[groupDirs[i]] = slices[i];
 
-        addToDB(dirPath + '/' + file, function (err) {
-          if (err)
-            callback(err);
-          counter --;
-          if (counter == 0)
-            callback();
-        });
-      });
+      callback(null, results);
     });
   }
 }
 
-addToDB(basedir, function (err) {
+var basedir = __dirname + '/documents/problems';
+
+addToDB(basedir, function (err, problemDB) {
   if (err)
     throw err;
   console.log(JSON.stringify(problemDB, null, 2));
