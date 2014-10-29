@@ -1,0 +1,19 @@
+{
+  "name": "IOL.cn",
+  "version": "0.0.1",
+  "description": "Resource about Linguistics Olympiad in Mandarin written with Simplified Chinese",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/notcome/www.IOL.cn.git"
+  },
+  "author": "Minsheng Liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/notcome/www.IOL.cn/issues"
+  },
+  "homepage": "https://github.com/notcome/www.IOL.cn"
+}
