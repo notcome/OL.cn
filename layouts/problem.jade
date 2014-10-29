@@ -1,0 +1,13 @@
+layout: base
+
+------
+
+aside
+  ul.tag-list
+    each tag in problemTagList
+      li: a(href='/problems/tags/' + tag.url)= tag.text
+  nav.group-toc
+    != problemGroupToc
+
+main
+  != content
