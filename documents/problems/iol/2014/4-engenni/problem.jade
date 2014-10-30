@@ -19,17 +19,14 @@ section: ul.assignments
   li
     p 翻译成汉语：
       ul.ordered(lang='enn-Latn')
-        li
-          = toCmn[0].ennq
-          wbr
-          = toCmn[0].enna
-        li
-          = toCmn[1].ennq
-          wbr
-          = toCmn[1].enna
+        each sentence in toCmn
+          li
+            = sentence.ennq
+            wbr
+            = sentence.enna
 
     p 这里还有恩盖尼语的一个答句，但相应的问句没有给出：
-    p.ordered(lang='enn')= toCmn[2].enna
+    p.ordered(lang='enn-Latn') ozyi ânò wei ga ạmó gbunono edèì.
     p 翻译成汉语。如果译法不止一种，请全部写出，并解释你这样翻译的理由。
 
   li
@@ -101,9 +98,6 @@ amemùrè wei ga ọ̀ nwạsese ozyi.
 ---
 amemùré lẹlemu dhúnenè ạmodhyòmù ậnò à? #[wbr]
 amemùré lẹlemu wei ga òki dhúnenè ạmodhyòmù ậnò.
----
-?
-ozyi ânò wei ga ạmó gbunono edèì.
 ---
 
 toEnn as [cmnq, cmna] =
