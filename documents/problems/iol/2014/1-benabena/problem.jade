@@ -1,0 +1,102 @@
+title: 贝纳贝纳语
+author: 戴谊凡
+------
+p 以下为贝纳贝纳语的一些动词形式及其汉语翻译：
+
+dl(class='two-col')
+  each pair in main
+    dt(lang='bef')
+      = pair.bef
+    dl
+      = pair.cmn
+
+ul.assignments
+  li
+    p 翻译成汉语：
+    ul(class='center phrases')
+      each bef in toCmn
+        li(class='comma-split', lang='bef')
+          = bef.bef
+
+  li
+    p 翻译成贝纳贝纳语：
+    ul
+      each cmn in toBef
+        li
+          = cmn.cmn
+
+section.note
+  p 贝纳贝纳语属于跨新几内亚语系。在巴布亚新几内亚，大约四万五千人使用该语言。
+
+------
+main as [bef, cmn] =
+---
+nohobe
+我在打他
+---
+kahalune
+我们将打你
+---
+nokoho’ibe
+我们俩在打你
+---
+nolenufu’inagihe
+因为我们俩在刺你们
+---
+nolifi’ibe
+你们俩在刺我们
+---
+nofunagihe
+因为我在刺他
+---
+nofine
+你在刺他
+---
+nifila’ibe
+你们俩将刺我
+---
+nonahatagihe
+因为你在打我
+---
+lenahalube
+我将打你们
+---
+nahalanagihe
+因为你们将打我
+---
+lahala’ibe
+你们俩将打我们
+---
+nofutagihe
+因为我们在刺他
+---
+lenifilu’ibe
+我们俩将刺你们
+---
+noho’inagihe
+因为我们俩在打他
+---
+
+toCmn as [bef] =
+---
+nonifibe
+---
+halu’ibe
+---
+lifilatagihe
+---
+nokufune
+---
+nolahanagihe
+---
+
+toBef as [cmn] =
+---
+你们俩在打他
+---
+我们将刺你
+---
+因为我们在打你们
+---
+因为你们将刺他
+---
