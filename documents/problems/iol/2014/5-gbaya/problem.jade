@@ -1,0 +1,96 @@
+title: 西北格巴亚语
+author: 鲍里斯·伊奥姆丁
+------
+p 以下为西北格巴亚语的一些词和词组及其汉语翻译（乱序排列）：
+
+ul.phrases
+  each gya in mainGya
+    li(lang='gya-Latn')
+      = gya
+
+ul.min-10em-collapse
+  each cmn in mainCmn
+    li= cmn
+
+section.assignment: ul
+  li 将原文与译文正确对应起来。
+
+  li
+    | 翻译成汉语：
+    ul(class='inline phrases', lang='gya-Latn')
+      each gya in toCmn
+        li= gya
+    | 。
+
+  li
+    | 翻译成西北格巴亚语：
+    ul(class='inline phrases semicolon-split')
+      each cmn in toGya
+        li= cmn
+    | 。
+
+section.note
+  p 西北格巴亚语属于乌班吉语系。在中非共和国，大约二十万人使用该语言。
+  p 
+    | 以上给出的西北格巴亚语的词采用简化转写法。
+    i(lang='gya-Latn') ʔ
+    | 是一个辅音。
+
+------
+mainGya as [...] =
+---
+ʔáá
+ʔáá náng nú kò
+ʔáá sèè
+búmá yík
+búmá zù yík
+dáng gòk
+dí fò
+dí sèè
+kò yík
+kò zòk
+náng wí
+nú fò
+nú lébé
+sèè wí
+yík
+yík wí
+zù
+---
+
+mainCmn as [...] =
+---
+在……的表面
+眼窝
+眉毛
+睫毛
+眼睛／脸
+田边
+脚
+幸福
+肝
+良田
+鼻孔
+在……的上方
+毒蛇
+舌尖
+死（动词）
+嫉妒（动词）
+放置（动词）
+---
+
+toCmn as [...] =
+---
+búmá zù
+kò
+lébé gòk
+lébé wí
+---
+
+toGya as [...] =
+---
+在……的中央
+头
+不愉快
+鼻子
+---
