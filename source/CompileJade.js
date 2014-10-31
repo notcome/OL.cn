@@ -1,6 +1,5 @@
 "use strict";
 
-var fs = require('fs');
 var jade = require('jade');
 var lot = require('lot-parser');
 var yaml = require('js-yaml');
@@ -10,6 +9,7 @@ function compileJade (source) {
   var [metadata, template, data] = source.split('------');
   data = lot(data);
   metadata = yaml.safeLoad(metadata);
+  metadata ? null : metadata = {};
 
   var compiler = jade.compile(template);
   
