@@ -56,7 +56,7 @@ var addToCollection = suspend.async(function* (lastUri, thisName) {
       tryMkdir,
       resume());
 
-    results = _.object(problems, problems.map(name => thisName + '/' + name));
+    results = _.object(problems, problems.map(name => path.join(lastUri, thisName, name)));
   }
   else {
     let collections =
