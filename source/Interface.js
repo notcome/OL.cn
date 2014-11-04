@@ -3,7 +3,7 @@
 module.exports = {
   'foundation': {
          '_': require('./utils/underscore'),
-    'printf': require('printf')
+    'printf': require('./utils/printf')
   },
   'io': {
       'fs': require('fs'),

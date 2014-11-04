@@ -5,7 +5,7 @@ var {_, printf} = requires.foundation;
 var parsers     = requires.parser;
 
 let parseErrors = {
-  wrongDelimiters: _.partial(printf, 'Source code should have exactly two delimiters. Delimiter: %s')
+  wrongDelimiters: printf('Source code should have exactly two delimiters. Delimiter: %s')
 };
 
 function compile (source, otherArgs = {}, delimiter = '------') {
