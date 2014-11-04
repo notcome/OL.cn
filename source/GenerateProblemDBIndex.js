@@ -57,17 +57,16 @@ var addToCollection = suspend.async(function* (lastUri, thisName) {
       tryMkdir,
       resume());
 
-    results.problems = _.object(problems, problems.map(name => thisName + '/' + name));
+    results = _.object(problems, problems.map(name => thisName + '/' + name));
   }
-
-  if (groups.length) {
+  else {
     let collections =
       yield async.map(
         groups,
         _.partial(addToCollection, thisUri),
         resume());
 
-    results.groups = _.object(groups, collections);
+    results = _.object(groups, collections);
   }
 
   return results;
