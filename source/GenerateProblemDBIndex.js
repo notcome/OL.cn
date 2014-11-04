@@ -1,16 +1,15 @@
 "use strict";
 
-var requires = require('./Interface');
-var _        = requires.foundation._;
-var fs       = requires.io.fs;
+var requires   = require('./Interface');
+var _          = requires.foundation._;
+var {fs, path} = requires.io;
 var {async, suspend, resume}
-             = requires.async;
+               = requires.async;
 
-const documentDir = __dirname + '/../documents';
-const outputDir   = __dirname + '/../output';
+const documentDir = path.resolve(__dirname, '../documents');
+const outputDir   = path.resolve(__dirname, '../output');
 
 var isProblemDir = dirname => _.toArray(dirname).indexOf('-') != -1;
-var path = (...path) => path.join('/');
 
 function tryMkdir (path, callback) {
   fs.mkdir(path, function (err) {
@@ -29,7 +28,7 @@ var listSubDirs = suspend.async(function* (dirpath) {
 
   let stats =
     yield async.map(
-      files.map(name => path(dirpath, name)),
+      files.map(name => path.join(dirpath, name)),
       fs.stat,
       resume());
   let results = files.filter((name, index) => stats[index].isDirectory());
@@ -37,23 +36,23 @@ var listSubDirs = suspend.async(function* (dirpath) {
 });
 
 var addToCollection = suspend.async(function* (lastUri, thisName) {
-  let thisUri = path(lastUri, thisName);
+  let thisUri = path.join(lastUri, thisName);
   var results = {};
 
   yield tryMkdir(
-    path(outputDir, thisUri),
+    path.join(outputDir, thisUri),
     resume());
 
   let subdirs =
     yield listSubDirs(
-      path(documentDir, thisUri),
+      path.join(documentDir, thisUri),
       resume());
 
   let [problems, groups] = _.partition(subdirs, isProblemDir);
 
   if (problems.length) {
     yield async.map(
-      problems.map(name => path(outputDir, thisUri, name)),
+      problems.map(name => path.join(outputDir, thisUri, name)),
       tryMkdir,
       resume());
 

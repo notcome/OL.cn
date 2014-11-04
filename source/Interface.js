@@ -7,6 +7,7 @@ module.exports = {
   },
   'io': {
       'fs': require('fs'),
+    'path': require('path'),
     'http': require('http')
   },
   'async': {
