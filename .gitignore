@@ -1,6 +1,8 @@
 node_modules
+compiled/
+patented/
+
 .DS_Store
 *.o
 *.hi
 *.log
-compiled/
