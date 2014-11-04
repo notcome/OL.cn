@@ -1,42 +1,76 @@
 "use strict";
 
-var fs = require('fs');
-var async = require('async');
-var suspend = require('suspend');
-var resume = suspend.resume;
-var _ = require('underscore');
+var requires = require('./Interface');
+var _        = requires.foundation._;
+var fs       = requires.io.fs;
+var {async, suspend, resume}
+             = requires.async;
+
+const documentDir = __dirname + '/../documents';
+const outputDir   = __dirname + '/../output';
 
 var isProblemDir = dirname => _.toArray(dirname).indexOf('-') != -1;
+var path = (...path) => path.join('/');
+
+function tryMkdir (path, callback) {
+  fs.mkdir(path, function (err) {
+    if (!err)
+      return callback();
+    if (err.code == 'EEXIST')
+      return callback();
+    else
+      return callback(err);
+  });
+}
 
 var listSubDirs = suspend.async(function* (dirpath) {
-  var files = yield fs.readdir(dirpath, resume());
-  files = files.filter(name => name[0] != '.');
+  let allFiles = yield fs.readdir(dirpath, resume());
+  let files = allFiles.filter(name => name[0] != '.');
 
-  var stats = yield async.map(files.map(name => dirpath + '/' + name), fs.stat, resume());
-  var results = files.filter((name, index) => stats[index].isDirectory());
+  let stats =
+    yield async.map(
+      files.map(name => path(dirpath, name)),
+      fs.stat,
+      resume());
+  let results = files.filter((name, index) => stats[index].isDirectory());
   return results;
 });
 
-var addToCollection = suspend.async(function* (basedir, relativePath) {
-  var absolutePath = basedir + '/' + relativePath;
+var addToCollection = suspend.async(function* (lastUri, thisName) {
+  let thisUri = path(lastUri, thisName);
   var results = {};
 
-  var subdirs = yield listSubDirs(absolutePath, resume());
-  var [problems, groups] = _.partition(subdirs, isProblemDir);
+  yield tryMkdir(
+    path(outputDir, thisUri),
+    resume());
 
-  if (problems.length)
-    results.problems = _.object(problems, problems.map(name => relativePath + '/' + name));
+  let subdirs =
+    yield listSubDirs(
+      path(documentDir, thisUri),
+      resume());
+
+  let [problems, groups] = _.partition(subdirs, isProblemDir);
+
+  if (problems.length) {
+    yield async.map(
+      problems.map(name => path(outputDir, thisUri, name)),
+      tryMkdir,
+      resume());
+
+    results.problems = _.object(problems, problems.map(name => thisName + '/' + name));
+  }
 
   if (groups.length) {
-    var collections = yield async.map(groups.map(name => relativePath + '/' + name),
-                                      _.partial(addToCollection, basedir),
-                                      resume());
+    let collections =
+      yield async.map(
+        groups,
+        _.partial(addToCollection, thisUri),
+        resume());
+
     results.groups = _.object(groups, collections);
   }
 
   return results;
 });
 
-var basedir = __dirname + '/documents';
-
-module.exports = _.partial(basedir, 'problems');
+module.exports = _.partial(addToCollection, '', 'problems');
