@@ -1,0 +1,113 @@
+titleː 通达诺语
+authorː 应嘉华
+------
+p
+  | 以下是一组标记了重音的通达诺语词语及其汉语翻译。
+  i(lang='tdn-Latn')´
+  | 表示重音。
+
+table
+  thead: tr #[th 通达诺语] #[th 汉语]
+  tbody
+    each pair in main
+      tr #[td(lang='tdn-Latn') pair.tdn] #[td pair.cmn]
+
+section.assignment
+  p 标出下列词语的重音：
+
+  table
+    thead: tr #[th 通达诺语] #[th 汉语]
+    tbody
+      each pair in toMark
+        tr #[td(lang='tdn-Latn') pair.tdn] #[td pair.cmn]
+
+section.note
+  p 通达诺语属于南岛语系。在苏拉威西岛东北部，约十万余人使用这门语言。
+  p
+    i(lang='tdn-Latn') ǝ
+    | 是元音，
+    i(lang='tdn-Latn') ’
+    | 和
+    i(lang='tdn-Latn') ɣ
+    | 是辅音，
+    i(lang='tdn-Latn') ː
+    | 表示长元音。
+
+------
+main as [tdn, cmn] =
+---
+asúta
+我们的狗
+---
+ǝ́nǝm
+六
+---
+ɣórǝm
+里面
+---
+káːnǝna
+将被他吃掉
+---
+kaːnǝ́ngku
+将被我吃掉
+---
+ka’ampítǝku
+我的朋友
+---
+kǝdír
+墙
+---
+kǝtórǝna
+将被他砍掉
+---
+líma
+五
+---
+mapúlu
+十
+---
+mǝngaːngáːn
+在不停地吃
+---
+rǝmǝdéy
+在站着
+---
+tǝlú
+三
+---
+tǝ́mpok
+小费
+---
+tikóː
+嗓子
+---
+tikóːku
+我的嗓子
+---
+túːnan
+瀑布
+---
+wéːnu
+将由你给出
+---
+
+toMark as [tdn, cmn] =
+---
+lumoː’
+将喝
+---
+mǝrǝrǝdey
+想要站
+---
+nǝndo
+天，日子
+---
+rǝpǝt
+快
+---
+watu
+石头
+---
+wingkotǝna
+将被他问
+---
