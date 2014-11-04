@@ -4,19 +4,19 @@ author: 阿列克赛·佩古谢夫
 p 以下为一些基奥瓦语名词的单数，双数和复数形式及其汉语翻译。表中名词均有三种形式，但没有全部列出。
 
 table
-  thead
-    tr #[th 单数] #[th 双数] #[th 复数]
+  thead: tr #[th 单数] #[th 双数] #[th 复数]
   tbody
     each tuple in main
-      each field in ['single', 'dual', 'plural']
-        if tuple[field] == null
-          td(lang='kio-Latn') ?
-        else if tuple[field] == 'n/a'
-          td.not-applicable
-        else
-          td(lang='kio-Latn')
-            = tuple[field]
-      td= tuple.cmn
+      tr
+        each field in ['single', 'dual', 'plural']
+          if tuple[field] == null
+            td(lang='kio-Latn') ?
+          else if tuple[field] == 'n/a'
+            td.not-applicable
+          else
+            td(lang='kio-Latn')
+              = tuple[field]
+        td= tuple.cmn
 
 section.assignment
   p 在带问号的空格内填上词的相应形式。
