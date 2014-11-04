@@ -1,6 +1,7 @@
 node_modules
 compiled/
 patented/
+source/debug.js
 
 .DS_Store
 *.o
