@@ -1,0 +1,84 @@
+title: 双拼盲文
+author: 应嘉华
+------
+p 下面是一些汉语拼音及其对应的双拼盲文。
+
+table
+  thead: tr #[th 拼音] #[th 双拼盲文]
+  tbody
+    each pair in main
+      tr
+        each field in ['Latn', 'Brai']
+          if pair[field] == null
+            td(lang='cmn-' + field)
+          else
+            td(lang='cmn-' + field)
+              = tuple[field]
+
+section.assignment
+  p 填完上表。
+
+section.note
+  p 双拼盲文是两种主要的汉语盲文表示方案之一。它发明于上世纪七十年代，至今仍在使用。
+
+------
+main as [Latn, Brai]
+---
+chuīzhòuyīchíchūnshuǐ
+⠭⠜⠉⠉⠒⠇⠍⠣⠭⠅⠫⠼ 
+---
+nǐhǎoma?
+⠟⠧⠃⠷⠪⠚⠐⠄ 
+---
+wǒhěnhǎo!
+⠢⠮⠃⠥⠃⠷⠰⠂ 
+---
+hǎoba?
+⠃⠷⠊⠚⠐⠄ 
+---
+tàinuǎnhuo.
+⠎⠛⠯⠯⠣⠊⠐ 
+---
+zěnmebànne?
+⠙⠥⠪⠊⠊⠋⠏⠊⠐⠄ 
+---
+értóngrénkǒurìyìzēngjiā.
+⠔⠺⠮⠱⠔⠡⠅⠭⠔⠃⠒⠃⠙⠕⠑⠞⠐ 
+---
+bùgāijiāoào.
+⠊⠃⠁⠟⠑⠗⠾⠓⠐ 
+---
+lǎolaozhǎodàoliǎo.
+⠇⠷⠇⠓⠉⠷⠌⠓⠗⠷⠐ 
+---
+huìxiàměixuě.
+⠣⠌⠓⠚⠪⠼⠳⠮⠐ 
+---
+suíbiàn
+? 
+---
+ruǎnwò
+? 
+---
+chóngq̀ing
+? 
+---
+sàshuǎng
+? 
+---
+cāngcuì
+? 
+---
+?
+⠵⠊⠜⠑ 
+---
+?
+⠲⠯ 
+---
+?
+⠚⠙⠚⠙⠺⠋ 
+---
+?
+⠋⠡⠪⠊⠐⠄ 
+---
+
