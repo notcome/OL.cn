@@ -1,16 +1,19 @@
-titleː 通达诺语
-authorː 应嘉华
+title: 通达诺语
+author: 应嘉华
 ------
 p
   | 以下是一组标记了重音的通达诺语词语及其汉语翻译。
-  i(lang='tdn-Latn')´
+  i(lang='tdn-Latn') ´
   | 表示重音。
 
 table
   thead: tr #[th 通达诺语] #[th 汉语]
   tbody
     each pair in main
-      tr #[td(lang='tdn-Latn') pair.tdn] #[td pair.cmn]
+      tr
+        td(lang='tdn-Latn')
+          = pair.tdn
+        td= pair.cmn
 
 section.assignment
   p 标出下列词语的重音：
@@ -19,7 +22,10 @@ section.assignment
     thead: tr #[th 通达诺语] #[th 汉语]
     tbody
       each pair in toMark
-        tr #[td(lang='tdn-Latn') pair.tdn] #[td pair.cmn]
+        tr
+          td(lang='tdn-Latn')
+            = pair.tdn
+          td= pair.cmn
 
 section.note
   p 通达诺语属于南岛语系。在苏拉威西岛东北部，约十万余人使用这门语言。
