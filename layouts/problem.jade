@@ -2,25 +2,11 @@
 doctype html
 html
   head
-    title= title + ' | ' + queryGroupName()
     meta(charset='utf-8')
     meta(author=author)
+    title= title + ' | IOL 2014'
 
   body
-    nav
-      h1.badge: a(href='/') IOL.cn
-      ul.groups
-        != generateGroup(problemID)
-      ul.tags
-        each tag in tags
-          li: a(href='/problems/tags/' + tagToURL(tag)) tag
-
-      ul.doc-type
-        each pair in possibleDocumentType
-          if (pair.type == documentType)
-            li.active: a(href='#')= pair.cmn
-          else
-            li: a(href=pair.type)= pair.cmn
 
     main
       != content
