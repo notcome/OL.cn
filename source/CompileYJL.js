@@ -26,7 +26,12 @@ function compile (source, otherArgs = {}, delimiter = '------') {
   let compiler = parsers.jade.compile(template, options);
 
   return {
-    compile: (locals) => compiler.call(null, _.extend(options, locals))
+    compile: (locals = {}) => {
+      _.extend(locals, options);
+      let content = compiler.call(null, locals);
+      locals.content = content;
+      return locals;
+    }
   };
 }
 
