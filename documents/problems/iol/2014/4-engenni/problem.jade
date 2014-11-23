@@ -15,7 +15,7 @@ dl.ordered
       br
       != sentence.cmna
 
-section: ul.assignments
+section.assignments: ul
   li
     p 翻译成汉语：
       ul.ordered(lang='enn-Latn')
@@ -25,18 +25,20 @@ section: ul.assignments
             wbr
             = sentence.enna
 
-    p 这里还有恩盖尼语的一个答句，但相应的问句没有给出：
-    p.ordered(lang='enn-Latn') ozyi ânò wei ga ạmó gbunono edèì.
-    p 翻译成汉语。如果译法不止一种，请全部写出，并解释你这样翻译的理由。
+    p 
+      | 这里还有恩盖尼语的一个答句，但相应的问句没有给出：
+      i.ordered(lang='enn-Latn')
+        | ozyi ânò wei ga ạmó gbunono edèì.
+      | 翻译成汉语。如果译法不止一种，请全部写出，并解释你这样翻译的理由。
 
   li
-    p 翻译成恩盖尼语：
-      ul.ordered
-        each sentence in toEnn
-          li
-            = sentence.cmnq
-            br
-            = sentence.cmna
+    | 翻译成恩盖尼语：
+    ul.ordered
+      each sentence in toEnn
+        li
+          = sentence.cmnq
+          br
+          = sentence.cmna
 
   li
     | 假设你要编写一部恩盖尼词典，那么表示#[i.mention 小偷]和#[i.mention 姑娘]的词的基本形式分别是什么？
