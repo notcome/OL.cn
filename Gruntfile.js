@@ -21,11 +21,8 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-traceur');
   grunt.loadNpmTasks('grunt-newer');
 
-  // Default task(s).
   grunt.registerTask('default', ['newer:traceur']);
-
 };
