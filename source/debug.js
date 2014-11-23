@@ -66,6 +66,7 @@ var work = suspend(function* (uri) {
         console.log(mark(uri), compiled(file));
       } catch (err) {
         console.log(compilingError(uri, file));
+        console.log(err);
         throw err;
       }
     }),
