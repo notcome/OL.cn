@@ -1,6 +1,6 @@
 {
-  "name": "IOL.cn",
-  "version": "0.0.1",
+  "name": "OL.cn",
+  "version": "0.0.2",
   "description": "Resource about Linguistics Olympiad in Mandarin written with Simplified Chinese",
   "main": "index.js",
   "scripts": {
