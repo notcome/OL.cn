@@ -1,7 +1,11 @@
 /* General */
+@import url("../fonts/fonts.css");
+
 html {
   font-size: 18px;
-  font-family: "Source Han Sans SC", sans-serif;
+  font-family: "Frutiger Neue", "汉仪旗黑", sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
 }
 
 * {
@@ -47,41 +51,120 @@ i:not(:lang(zh-Hans-CN)) {
  * A dirty workaround:
  */
 
-body [lang]
-{ font-family: "Charis SIL"; }
-
-i[lang] {
-  margin-left: 0.25em;
-  margin-right: 0.25em;
+[lang$="Latn"] {
+  font-family: "Calibri";
+  font-size: 110%;
 }
 
-i.mention:before
-{ content: open-quote; }
-i.mention:after
-{ content: close-quote; }
-i.mention
-{ quotes: "「" "」" "『" "』"; }
+i[lang$="Latn"] {
+  font-style: normal;
+  margin: 0 0.25em;
+}
 
-/* Header */
-h1 {
+.topbar {
+  width: 60rem;
+  margin: 1.5rem auto;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: baseline;
+  align-items: baseline;
+  color: #9E86B2;
+}
+
+.topbar * {
+  display: inline-block;
+}
+
+.problem-info > * {
+  margin-right: 1.5rem;
+}
+
+.view-switcher li {
+  margin-right: 1.5rem;
+}
+
+.topbar > * {
+  margin-right: 1.5rem;
+  display: inline-block;
+}
+
+.badge {
+  font-family: "Helvetica Neue";
+}
+
+.topbar .badge {
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+ul.tag-list {
+  list-style-type: none;
+}
+
+ul.tag-list::before {
+  content: "标签：";
+}
+
+ul.tag-list > li{
+  display: inline;
+}
+
+ul.tag-list > li::after {
+  content: "，";
+}
+
+ul.tag-list li:last-of-type::after {
+  content: "";
+}
+
+.view-switcher {
+  list-style-type: none;
+}
+
+.view-switcher > li {
+  display: inline;
+  margin-right: 1.5rem;
+}
+
+li.active {
+  border-bottom: solid;
+}
+
+main {
+  width: 40rem;
+  margin: auto;
+}
+
+main > header {
   text-align: center;
-  font-size: 2.5rem;
-  line-height: 1em;
-  font-weight: lighter;
-  margin: 0 0 1rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
-p.author {
+main > header > h1 {
+  font-weight: 300;
+}
+
+ul.phrases {
   text-align: center;
-  font-size: 1.2rem;
-  line-height: 1em;
-  margin: 0;
+}
+ul.phrases li {
+  display: inline;
+}
+ul.phrases li::after {
+  content: ", ";
+}
+ul.phrases li:last-of-type::after {
+  content: "";
 }
 
-header {
-  margin: 2rem 0 2rem;
+.min-10em-collapse {
+  /* 40em / 10em = 4 */
+  -webkit-columns: 4;
+  columns: 4;
 }
-
 
 /* Counters */
 .rosetta-stone
@@ -148,4 +231,16 @@ main.two-cols dt {
 
 main.two-cols dl.stone {
   overflow: hidden;
+}
+
+ul.inline {
+  display: inline;
+}
+
+i.zero-l {
+  margin-left: 0;
+}
+
+main > section {
+  margin-top: 1.5em;
 }
