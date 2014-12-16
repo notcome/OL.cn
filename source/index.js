@@ -42,6 +42,9 @@ function generate (dir) {
 var initialValue = {};
 
 function reducer () {}
+var compileMetadata = require('./plugins/metadata');
+var compileLot = require('./plugins/lot');
+var compileJade = require('./plugins/jade');
 
 function compileTerminal (dir) {
   let {files} = dir.readdirAndSort();
@@ -57,54 +60,6 @@ function compileTerminal (dir) {
     key: path.basename(dir.path),
     value: _.pick(context, 'title', 'author', 'tags')
   };
-}
-
-function compileLot (context, files) {
-  console.log('Compiling lot files');
-
-  let lotFiles = files.filter(file => path.basename(file.path).slice(-4) == '.lot');
-  lotFiles.forEach(lotFile => {
-    let lotText = lotFile.readTextFile();
-    try {
-      var lotData = parsers.lot(lotText);
-    }
-    catch (err) {
-      console.log('In file', lotFile.absPath);
-      console.log('At Line', err.line);
-      console.log('Error:', err.error);
-      throw err;
-    }
-    
-    context = _.extend(context, lotData);
-  });
-
-  return context;
-}
-
-function compileMetadata (context, files) {
-  console.log('Compiling metadata');
-
-  let filteredFileList = files.filter(file => path.basename(file.path) == 'metadata.yml');
-  if (filteredFileList.length == 0)
-    return console.log('no metadata');
-  
-  let metadataFile = filteredFileList[0];
-  let metadataText = metadataFile.readTextFile();
-  let metadata = parsers.yaml.safeLoad(metadataText);
-  return _.extend(context, metadata);
-}
-
-function compileJade (context, files) {
-  console.log('Compiling jade files');
-  let jadeFiles = files.filter(file => path.basename(file.path).slice(-5) == '.jade');
-
-  jadeFiles.forEach(jadeFile => {
-    let content = parsers.jade.renderFile(jadeFile.absPath, context);
-    jadeFile.writeTextFile(content, '.html');
-    context.content = content;
-  });
-
-  return context;
 }
 
 function newTempPath () {
