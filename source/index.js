@@ -79,4 +79,7 @@ function startCompile (src, dest) {
   fs.renameSync(tmpPath, dest);
 }
 
+var templates = require('./TemplateManager')('/Users/LiuMS/GitHub/OL.cn/layouts');
+var plugins = require('./plugins')(templates);
+
 startCompile('/Users/LiuMS/Desktop/iol', '/Users/LiuMS/Desktop/iol-output');

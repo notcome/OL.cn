@@ -4,9 +4,8 @@ var _ = require('underscore');
 var jade = require('jade');
 var path = require('path');
 
-function compileJade (context, files) {
-  console.log('Compiling jade files.');
-  let jadeFiles = files.filter(file => path.basename(file.path).slice(-5) == '.jade');
+function init (templates) {
+  return function (context, files) {
 
   jadeFiles.forEach(jadeFile => {
     let content = jade.renderFile(jadeFile.absPath, context);
@@ -17,4 +16,4 @@ function compileJade (context, files) {
   return context;
 }
 
-module.exports = compileJade;
+module.exports = init;

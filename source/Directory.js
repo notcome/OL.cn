@@ -4,7 +4,7 @@ var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
 
-function Directory (srcRoot, destRoot, thisPath = '') {
+function Directory (srcRoot, destRoot = '', thisPath = '') {
   this.srcRoot  = srcRoot;
   this.destRoot = destRoot;
   this.path     = thisPath;
