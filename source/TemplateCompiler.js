@@ -6,3 +6,8 @@ var parsers = {
    'lot': require('lot-parser')
 };
 
+
+    render: (locals = {}) => {
+      _.extend(locals, options);
+      return compiler.call(null, locals);
+    }
