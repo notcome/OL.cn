@@ -1,8 +1,12 @@
 "use strict";
 
-var requires    = require('./Interface');
-var {_, printf} = requires.foundation;
-var parsers     = requires.parser;
+var _ = require('./utils/underscore');
+var printf = require('./utils/printf');
+var parsers = {
+  'yaml': require('js-yaml'),
+  'jade': require('jade'),
+   'lot': require('lot-parser')
+};
 
 let parseErrors = {
   wrongDelimiters: printf('Source code should have exactly two delimiters. Delimiter: %s')
@@ -31,6 +35,11 @@ function compile (source, otherArgs = {}, delimiter = '------') {
       let content = compiler.call(null, locals);
       locals.content = content;
       return locals;
+    },
+
+    render: (locals = {}) => {
+      _.extend(locals, options);
+      return compiler.call(null, locals);
     }
   };
 }
