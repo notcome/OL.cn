@@ -59,7 +59,7 @@ function newTempPath () {
 
 function startCompile (src, dest) {
   var tmpPath = newTempPath();
-  var toc = generate(new Directory('/Users/LiuMS/Desktop/iol', tmpPath)).value;
+  var toc = generate(new Directory(src, tmpPath)).value;
   console.log(JSON.stringify(toc, null, 2));
 
   var gravePath = newTempPath();
@@ -69,9 +69,7 @@ function startCompile (src, dest) {
   fs.renameSync(tmpPath, dest);
 }
 
-var templates = require('./TemplateManager')('/Users/LiuMS/GitHub/OL.cn/layouts');
+var templates = require('./TemplateManager')('layouts');
 var plugins = require('./plugins')(templates);
 
-startCompile(
-  '/Users/LiuMS/GitHub/OL.cn/documents/problems',
-  '/Users/LiuMS/output/problems');
+startCompile('documents/problems', 'output/problems');
