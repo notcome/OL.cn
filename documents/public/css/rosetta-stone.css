@@ -1,246 +1,30 @@
-/* General */
-@import url("../fonts/fonts.css");
-
-html {
-  font-size: 18px;
-  font-family: "Frutiger Neue", "汉仪旗黑", sans-serif;
-  font-size: 16px;
-  line-height: 1.5em;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-i, b, strong, em
-{ font-style: normal; }
-
-main {
-  width: 40rem;
-  margin: auto;
-}
-
-p, dd, dt, li
-{ line-height: 1.5em; }
-
-p {
-  margin: 0.5em 0;
-}
-
-/* Printing */
-ul.assignments > li
-{ page-break-inside: avoid; }
-
-/* General - IPA Font */
-
-/*
- * The following code only works under CSS Selector Level 4;
- *
-
-:not(:lang(zh-Hans-CN))
-{ font-family: "Charis SIL"; }
-
-i:not(:lang(zh-Hans-CN)) {
-  margin-left: 0.25em;
-  margin-right: 0.25em;
-}
-
- * Since we omit lang attribute for all Chinese texts,
- * selecting all elements with lang attribute could work.
- * A dirty workaround:
- */
-
-[lang$="Latn"] {
-  font-family: "Calibri";
-  font-size: 110%;
-}
-
-i[lang$="Latn"] {
-  font-style: normal;
-  margin: 0 0.25em;
-}
-
-.topbar {
-  width: 60rem;
-  margin: 1.5rem auto;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-  -webkit-align-items: baseline;
-  align-items: baseline;
-  color: #9E86B2;
-}
-
-.topbar * {
-  display: inline-block;
-}
-
-.problem-info > * {
-  margin-right: 1.5rem;
-}
-
-.view-switcher li {
-  margin-right: 1.5rem;
-}
-
-.topbar > * {
-  margin-right: 1.5rem;
-  display: inline-block;
-}
-
-.badge {
-  font-family: "Helvetica Neue";
-}
-
-.topbar .badge {
-  font-weight: 300;
-  font-size: 1.5rem;
-}
-
-ul.tag-list {
-  list-style-type: none;
-}
-
-ul.tag-list::before {
-  content: "标签：";
-}
-
-ul.tag-list > li{
-  display: inline;
-}
-
-ul.tag-list > li::after {
-  content: "，";
-}
-
-ul.tag-list li:last-of-type::after {
-  content: "";
-}
-
-.view-switcher {
-  list-style-type: none;
-}
-
-.view-switcher > li {
-  display: inline;
-  margin-right: 1.5rem;
-}
-
-li.active {
-  border-bottom: solid;
-}
-
-main {
-  width: 40rem;
-  margin: auto;
-}
-
-main > header {
-  text-align: center;
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
-}
-
-main > header > h1 {
-  font-weight: 300;
-}
-
-ul.phrases {
-  text-align: center;
-}
-ul.phrases li {
-  display: inline;
-}
-ul.phrases li::after {
-  content: ", ";
-}
-ul.phrases li:last-of-type::after {
-  content: "";
-}
-
-.min-10em-collapse {
-  /* 40em / 10em = 4 */
-  -webkit-columns: 4;
-  columns: 4;
-}
-
-/* Counters */
-.rosetta-stone
+main 
 { counter-reset: rosetta-stone-counter; }
 
-dl.stone > dt, ul.stone > li, p.stone
-{ counter-increment: rosetta-stone-counter; }
+ul.ordered {
+  list-style-type: none;
+}
 
-.assignments
-{ counter-reset: rosetta-assignments-counter; }
+dl.ordered > dt, ul.ordered > li, p.ordered {
+  counter-increment: rosetta-stone-counter;
+  position: relative;
+}
 
-ul.assignments > li
-{ counter-increment: rosetta-assignments-counter; }
+dl.ordered > dt, dl.ordered > dd, ul.ordered > li, p.ordered
+{ padding-left: 2rem; }
 
-/* Counter Styles */
-dl.stone > dt, ul.stone > li, ul.assignments > li, p.stone
-{ position: relative; }
 
-ul.stone, ul.assignments
-{ list-style-type: none; }
-
-dl.stone > dt, dl.stone > dd, ul.stone > li, p.stone
-{ padding-left: 2em; }
-
-dl.stone > dt:before,
-ul.stone > li:before,
-p.stone:before {
+dl.ordered > dt:before,
+ul.ordered > li:before,
+p.ordered:before {
   content: counter(rosetta-stone-counter) ".";
-  width: 1.5em;
+  width: 1.5rem;
   text-align: right;
-  font-family: "Youhei GB";
+  font-family: "Frutiger Neue";
+  font-size: 1rem;
   display: inline-block;
   position: absolute;
   top: 0;
   left: 0;
-  line-height: 1.5em;
-}
-
-ul.assignments > li
-{ padding-left: 1.5em; }
-
-ul.assignments > li:before {
-  content: counter(rosetta-assignments-counter, lower-alpha) ".";
-  width: 1em;
-  text-align: right;
-  font-family: "Youhei GB";
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  line-height: 1.5em;
-}
-
-/* Two-Column Dataset */
-
-main.two-cols dt, main.two-cols dd {
-  float: left;
-}
-
-main.two-cols dt {
-  clear: left;
-  width: 40%;
-}
-
-main.two-cols dl.stone {
-  overflow: hidden;
-}
-
-ul.inline {
-  display: inline;
-}
-
-i.zero-l {
-  margin-left: 0;
-}
-
-main > section {
-  margin-top: 1.5em;
+  line-height: 1.5rem;
 }

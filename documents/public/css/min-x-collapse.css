@@ -1,0 +1,5 @@
+ul.min-10em-collapse {
+  list-style-type: none;
+  -webkit-column-count: 4;
+  column-count: 4;
+}

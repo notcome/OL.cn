@@ -5,27 +5,31 @@ html
     meta(charset='utf-8')
     meta(author=author)
     title= title + ' | IOL 2014'
-    link(rel='stylesheet', href='file:///Users/LiuMS/GitHub/OL.cn/documents/public/css/rosetta-stone.css')
+    link(rel='stylesheet', href='/public/css/problemdb.css')
+    link(rel='stylesheet', href='/public/css/navbar.css')
+    link(rel='stylesheet', href='/public/css/assignment.css')
+    link(rel='stylesheet', href='/public/css/rosetta-stone.css')
+    link(rel='stylesheet', href='/public/css/two-cols.css')
+    link(rel='stylesheet', href='/public/css/inline-and-phrases.css')
+    link(rel='stylesheet', href='/public/css/min-x-collapse.css')
+    link(rel='stylesheet', href='/public/css/table.css')
       
   body
-    nav
-      h1 IOL.cn
-      .groups
-      .tags
-        p 标签：
-        ul
+    nav.topbar
+      .left-aligned
+        h1
+          a(href='/') Yan.ac
+        ul.tags
+          each tag in tags
+            li= tag
+      .right-aligned
+        ul.panel
+          li: a.active(href='problem.html') 题目
+          li: a(href='solution.html') 解答
     main
+      header
+        h1= title
+        p.author= author
       != content
 
 ------
-possibleDocumentType as [type, cmn] =
----
-problem
-题目
----
-solution
-解答
----
-discussion
-讨论
----

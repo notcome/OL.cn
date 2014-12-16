@@ -1,0 +1,18 @@
+ul.phrases {
+  text-align: center;
+}
+ul.phrases li {
+  display: inline;
+}
+ul.phrases li::after {
+  content: ", ";
+}
+ul.phrases li:last-of-type::after {
+  content: "";
+}
+
+.min-10em-collapse {
+  /* 40em / 10em = 4 */
+  -webkit-columns: 4;
+  columns: 4;
+}

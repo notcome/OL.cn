@@ -1,0 +1,71 @@
+@import url("../fonts/fonts.css");
+
+html {
+  font-family: "Frutiger Neue", "汉仪旗黑", sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+i, b, strong, em
+{ font-style: normal; }
+
+a {
+  text-decoration: none;
+  color: #9E86B2;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #9E86B2;
+}
+
+main {
+  width: 40rem;
+  margin: auto;
+}
+
+p, dd, dt, li
+{ line-height: 1.5em; }
+
+p {
+  margin: 0.5em 0;
+}
+
+[lang$="Latn"] {
+  font-family: "Calibri";
+  font-size: 110%;
+/* WARNING: BAD PRACTICE */
+  line-height: 24px;
+}
+
+i[lang$="Latn"] {
+  font-style: normal;
+  margin: 0 0.25em;
+}
+
+main {
+  width: 40rem;
+  margin: auto;
+}
+
+main > header {
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+main > header > h1 {
+  font-weight: 300;
+}
+
+section.assignments, section.note {
+  margin-top: 1.5rem;
+}

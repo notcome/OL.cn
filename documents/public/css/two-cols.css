@@ -1,0 +1,25 @@
+dl.two-cols dt, dl.two-cols dd {
+  float: left;
+}
+
+dl.two-cols dt {
+  clear: left;
+  width: 40%;
+}
+
+dl.two-cols dl.stone {
+  overflow: hidden;
+}
+
+dl.two-cols:after {
+  content: "."; 
+  visibility: hidden; 
+  display: block; 
+  height: 0; 
+  clear: both;
+}
+
+ul.two-cols {
+  -webkit-column-count: 2;
+  column-count: 2;
+}

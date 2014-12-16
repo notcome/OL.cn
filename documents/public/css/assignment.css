@@ -1,0 +1,25 @@
+.assignments > ul > li
+{ page-break-inside: avoid; }
+
+.assignments > ul {
+  counter-reset: rosetta-assignments-counter;
+  list-style-type: none;
+}
+
+.assignments > ul > li {
+  counter-increment: rosetta-assignments-counter;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+.assignments > ul > li:before {
+  content: counter(rosetta-assignments-counter, lower-alpha) ".";
+  width: 1em;
+  text-align: right;
+  font-family: "Frutiger Neue";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1.5em;
+}
