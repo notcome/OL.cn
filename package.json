@@ -4,7 +4,7 @@
   "description": "Resource about Linguistics Olympiad in Mandarin written with Simplified Chinese",
   "main": "index.js",
   "scripts": {
-    "debug": "grunt & node --harmony compiled/index.js"
+    "debug": "node --harmony compiled/index.js"
   },
   "repository": {
     "type": "git",
