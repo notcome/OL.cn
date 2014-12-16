@@ -1,0 +1,34 @@
+p 以下为西北格巴亚语的一些词和词组及其汉语翻译（乱序排列）：
+
+ul.phrases
+  each gya in mainGya
+    li(lang='gya-Latn')
+      = gya
+
+ul.min-10em-collapse
+  each cmn in mainCmn
+    li= cmn
+
+section.assignments: ul
+  li 将原文与译文正确对应起来。
+
+  li
+    | 翻译成汉语：
+    ul(class='inline phrases', lang='gya-Latn')
+      each gya in toCmn
+        li= gya
+    | 。
+
+  li
+    | 翻译成西北格巴亚语：
+    ul(class='inline phrases semicolon-split')
+      each cmn in toGya
+        li= cmn
+    | 。
+
+section.note
+  p 西北格巴亚语属于乌班吉语系。在中非共和国，大约二十万人使用该语言。
+  p 
+    | 以上给出的西北格巴亚语的词采用简化转写法。
+    i(lang='gya-Latn') ʔ
+    | 是一个辅音。
