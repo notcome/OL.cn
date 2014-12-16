@@ -1,32 +1,25 @@
-title: 阿迪格语
-author: Yakov Testelets
-------
-
 p 以下为一些用一种简化的罗马化方案书写的阿迪格语句子及其汉语翻译：
 
 dl(class='ordered two-cols')
-  each sentence in main
+  each pair in data
     dt(lang='ady-Latn')
-      = sentence.ady
+      = pair.ady
     dd
-      = sentence.cmn
+      = pair.cmn
 
 section.assignments: ul
   li 请给出第 6、7 句更加精确的翻译。
   li
     | 翻译成汉语：
     ul.ordered
-      li(lang='ady-Latn')
-        | pχənṭəḳur hakum deʒə.
-      li(lang='ady-Latn')
-        | aχśər tyda zydiʁafərər?
+      li(lang='ady-Latn')= asg2[0].ady
+      li(lang='ady-Latn')= asg2[1].ady
 
   li
     | 翻译成阿迪格语
     ul.ordered
-      li 他把[这]碟子放在[这]水壶下面。
-      li 他把什么投在[这]箱子下面？
-      li 他把什么落在[这]大锅里面？
+      each pair in asg3
+        li= pair.cmn
 
   li
     | 翻译成阿迪格语，写出所有译法：
@@ -45,29 +38,3 @@ section.note
     | 和
     i(lang='ady-Latn') y
     | 是元音。
-
-------
-main as [ady, cmn] =
----
-śanyćyr hakum deʁəuco.
-他把[这]水壶放在[这]炉子里面。
----
-syda laʁəm tyriʒərər?
-他把什么投在[这]碟子上面？
----
-aχśər pχwantym tyreʁafə.
-他把[这]钱落在[这]箱子上面。
----
-śywanyr ʔanym tyreʁəuco.
-他把[这]大锅放在[这]桌子上面。
----
-syda pχənṭəḳum ć̣iʁafərər?
-他把什么落在[这]凳子下面？
----
-laʁər tyda zyć̣iʁəucorər?
-他把[这]碟子放在哪里？
----
-laʁər tyda zytyriʒərər?
-他把[这]碟子投在哪里？
----
-

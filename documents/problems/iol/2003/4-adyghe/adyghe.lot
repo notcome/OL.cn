@@ -1,0 +1,65 @@
+data as [ady, cmn] =
+---
+śanyćyr hakum deʁəuco.
+他把[这]水壶放在[这]炉子里面。
+---
+syda laʁəm tyriʒərər?
+他把什么投在[这]碟子上面？
+---
+aχśər pχwantym tyreʁafə.
+他把[这]钱落在[这]箱子上面。
+---
+śywanyr ʔanym tyreʁəuco.
+他把[这]大锅放在[这]桌子上面。
+---
+syda pχənṭəḳum ć̣iʁafərər?
+他把什么落在[这]凳子下面？
+---
+laʁər tyda zyć̣iʁəucorər?
+他把[这]碟子放在哪里？
+---
+laʁər tyda zytyriʒərər?
+他把[这]碟子投在哪里？
+---
+
+asg1 as [...] =
+---
+他把[这]碟子放在什么的下面？
+他把[这]碟子投在什么的上面？
+---
+
+asg2 as [ady, cmn] =
+---
+pχənṭəḳur hakum deʒə.
+他把[这]凳子投在[这]炉子里面。
+---
+aχśər tyda zydiʁafərər?
+他把[这]钱落在什么的里面？
+---
+
+asg3 as [ady, cmn] =
+---
+laʁər śanyćym ć̣eʁəuco.
+他把[这]碟子放在[这]水壶下面。
+---
+syda pχwantym ć̣iʒərər?
+他把什么投在[这]箱子下面？
+---
+syda śywanym diʁafərər?
+他把什么落在[这]大锅里面？
+---
+
+asg4 as [ady1, ady2, cmn] =
+---
+ʔanyr tyda
+zydiʁəucorər?
+他把[这]桌子放在什么的里面?
+---
+ʔanyr tyda
+zydiʁəucorər?
+他把[这]桌子放在什么的上面?
+---
+ʔanyr tyda
+zyć̣iʁəucorər?
+他把[这]桌子放在什么的下面?
+---

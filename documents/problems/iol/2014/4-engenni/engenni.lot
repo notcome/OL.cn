@@ -1,0 +1,55 @@
+main as [ennq, enna, cmnq, cmna] =
+---
+edèì âno nwạ́sesè ozyí lẹlemù à?
+edèì ânò wei ga òkí nwạsese ozyí lẹlemù.
+这一个男人会(将来时)吓到[这]受骗的小偷吗？
+这一个男人说他<sub>这一个男人</sub>不会(将来时)吓到[这]受骗的小偷。
+---
+ạvùràmù kịnono amemùrè ânò à?
+ạvùràmù wei ga òkì kịnono amemùrè ânò.
+[这]女人长(过去时)得像这一个姑娘吗？
+[这]女人说她<sub>[这]女人</sub>长(过去时)得像这一个姑娘。
+---
+ạmó lẹlemù ậnó wuese ạvùràmù à?
+ạmodhyòmù wei ga ò wuese ạvùràmù.
+这一个受骗的儿童没有杀[这]女人吗？
+[这]青年说他<sub>这一个受骗的儿童</sub>杀了[这]女人。
+---
+edèí dhia gbúnonò ạmò à?
+ạvùràmú kofilomù wei ga o gbúnonò ạmò.
+[这]坏男人会(将来时)治好[这]儿童吗？
+[这]咳嗽的女人说他<sub>[这]坏男人</sub>会(将来时)治好[这]儿童。
+---
+amemùré dhiá kịnono opilopo ânò à?
+ạvùràmù wei ga ọ́ kịnono opilopo ânò.
+[这]坏姑娘长(过去时)得不像这一头猪吗？
+[这]女人说她<sub>[这]坏姑娘</sub>长(过去时)得不像这一头猪。
+---
+ozyì gbunono okàá nụamù ậnò à?
+ozyì wei ga òkí gbunono okàá nụamù ậnò.
+[这]小偷治好了这一个挨了打的老汉吗？
+[这]小偷说他<sub>[这]小偷</sub>没有治好这一个挨了打的老汉。
+---
+ozyi âno kị́nonò edèí kofilomù à?
+ạmò ậnò wei ga ọ́ kịnono edèí kofilomù.
+这一个小偷会(将来时)长得像[这]咳嗽的男人吗？
+这一个儿童说他<sub>这一个小偷</sub>不会(将来时)长得像[这]咳嗽的男人。
+---
+
+toCmn as [ennq, enna] =
+---
+edèì ânò nwạsese ozyi à?
+amemùrè wei ga ọ̀ nwạsese ozyi.
+---
+amemùré lẹlemu dhúnenè ạmodhyòmù ậnò à? #[wbr]
+amemùré lẹlemu wei ga òki dhúnenè ạmodhyòmù ậnò.
+---
+
+toEnn as [cmnq, cmna] =
+---
+[这]老汉会(将来时)长得像这一个咳嗽的青年吗？
+[这]儿童说他{sub: [这]老汉}不会(将来时)长得像这一个咳嗽的青年。
+---
+这一个挨了打的女人没有吓到[这]男人吗？
+这一个挨了打的女人说她{sub: 这一个挨了打的女人}没有吓到[这]男人。
+---
