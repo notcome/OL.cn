@@ -72,4 +72,6 @@ function startCompile (src, dest) {
 var templates = require('./TemplateManager')('/Users/LiuMS/GitHub/OL.cn/layouts');
 var plugins = require('./plugins')(templates);
 
-startCompile('/Users/LiuMS/Desktop/iol', '/Users/LiuMS/Desktop/iol-output');
+startCompile(
+  '/Users/LiuMS/GitHub/OL.cn/documents/problems',
+  '/Users/LiuMS/output/problems');
