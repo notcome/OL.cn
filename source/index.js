@@ -1,14 +1,10 @@
 "use strict";
 
-var _ = require('underscore');
 var path = require('path');
 var fs = require('fs');
+var _ = require('underscore');
 
 var Directory = require('./Directory');
-
-var requires    = require('./Interface');
-var {_, printf} = requires.foundation;
-var parsers     = requires.parser;
 
 
 function generate (dir) {
