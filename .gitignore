@@ -1,7 +1,7 @@
 node_modules
 compiled/
 documents/public/fonts
-output/
+output/problems
 
 .DS_Store
 *.o
