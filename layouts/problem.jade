@@ -29,7 +29,8 @@ html
     main
       header
         h1= title
-        p.author= author
+        if author
+          p.author= author
       != content
 
 ------

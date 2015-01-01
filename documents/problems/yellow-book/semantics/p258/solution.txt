@@ -1,0 +1,11 @@
+我们可以假设词中间有元音 -o- 的数字，其第一部分是个位数，第二部分是十位数。因此，(2) 可以有两种理解方式：5 × 5 = 25 或 6 × 6 = 36。考虑到丹麦语中的「六」应当为「seks」（英语「six」，意大利语「sechs」），第一种理解方式更有可能。既然「fem」为 5，「seks」为 6，那么「tyve」就是 20，「fir」为 4。
+
+「X-sinstyve」代表 20X，因此「sins」是一个乘法标记。「A-o-B-sinstyve」应为 A + 20B。由此可推出，(3) 为：84 + 6 = 90。考虑到「femsinstyve」为 100，「halv-X-sinstyve」大致可以理解为: (X - halv) × tyve，即 (X - 0.5) × 20。
+
+看 (4)。(20X + 6) + niden = 85。由 (6) 的右边可以得出，凡不是「A-o-B」形式的词，均小于 20，可以推出 (4) 为：(3 × 20 + 6) + 19 = 85，「tre」为 3，「niden」为 19。「-den」意为 10，用于大于 10 小于 20 的数字（英语「-teen」)。
+
+根据现有理论，(5) 为：15 + 65 = 80，等式成立，理论无误。
+
+(6): treden (13) + seksden (16) = niotyve (29) 
+(7): seks (6) × ni (9) = fireohalvtresinstyve(54)
+(8): niotresinstyve (69) + fireotyve (24) = treohalfemsinstyve (93)
