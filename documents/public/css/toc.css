@@ -1,0 +1,24 @@
+.toc-container h1 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.toc-container section {
+  margin-left: 20px;
+}
+
+.problem h1, .problem p, .problem a {
+  display: inline;
+}
+
+.problem h1:after {
+  content: "，"
+}
+
+.problem p:before {
+  content: "作者：";
+}
+
+.problem p:after {
+  content: "，"
+}
