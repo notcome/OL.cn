@@ -7,13 +7,12 @@ var fs = require('fs');
 
 function init (templates) {
   return function (context, files) {
-    console.log('Compiling jade files.');
-    let jadeFiles = files.filter(file => path.basename(file.path).slice(-5) == '.jade');
+    let jadeFiles = files.filter(file => file.basename.slice(-5) == '.jade');
 
     jadeFiles.forEach(jadeFile => {
-      let content = jade.renderFile(jadeFile.absPath, context);
+      let content = jade.renderFile(jadeFile.srcPath, context);
 
-      let filename = path.basename(jadeFile.path);
+      let filename = jadeFile.basename;
       let name = filename.slice(0, -path.extname(filename).length);
 
       if (!templates.hasOwnProperty(name))

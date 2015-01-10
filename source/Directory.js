@@ -4,55 +4,44 @@ var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
 
-function Directory (srcRoot, destRoot = '', thisPath = '') {
-  this.srcRoot  = srcRoot;
-  this.destRoot = destRoot;
-  this.path     = thisPath;
-  this.absPath  = path.resolve(srcRoot, thisPath);
-  this.destAbsPath = path.resolve(destRoot, thisPath);
+var TextFile = require('./TextFile');
+
+class Directory {
+  constructor (srcRoot, destRoot = '', basename = '') {
+    this.basename = basename;
+    this.srcPath  = path.resolve(srcRoot, basename);
+    this.destPath = path.resolve(destRoot, basename);
+  }
+
+  readdir () {
+    return fs.readdirSync(this.srcPath);
+  }
+
+  makeDestDir () {
+    fs.mkdirSync(this.destPath);
+  }
+
+  readdirAndSort () {
+    let isSystemFile = filename => filename[0] == '.';
+    let isDirectory  = filename => fs.statSync(path.join(this.srcPath, filename)).isDirectory();
+
+    let contentList = this.readdir();
+    let [systemContentList, normalContentList] = _.partition(contentList, isSystemFile);
+    let [systemDirs, systemFiles] = _.partition(systemContentList, isDirectory);
+    let [normalDirs, normalFiles] = _.partition(normalContentList, isDirectory);
+
+    let srcRoot  = this.srcPath;
+    let destRoot = this.destPath;
+    let directoryFactory = filename => new Directory(srcRoot, destRoot, filename);
+    let textFileFactory  = filename => new TextFile(srcRoot, destRoot, filename);
+
+    return {
+      systemFiles: _.map(systemFiles, textFileFactory),
+      systemDirs:  _.map(systemDirs, directoryFactory),
+      files:       _.map(normalFiles, textFileFactory),
+      dirs:        _.map(normalDirs, directoryFactory)
+    };
+  }
 }
-
-Directory.prototype.readdir = function () {
-  return fs.readdirSync(this.absPath);
-}
-
-Directory.prototype.makeDestDir = function () {
-  console.log('makeDestDir:', this.destAbsPath);
-  fs.mkdirSync(path.join(this.destAbsPath));
-};
-
-Directory.prototype.readTextFile = function () {
-  return fs.readFileSync(this.absPath, { encoding: 'utf8' });
-}
-
-Directory.prototype.writeTextFile = function (data, ext) {
-  var thisPath = this.destAbsPath;
-  if (ext)
-    thisPath = thisPath.slice(0, -path.extname(thisPath).length) + ext;
-
-  fs.writeFileSync(thisPath, data, { encoding: 'utf8' });
-}
-
-Directory.prototype.readdirAndSort = function () {
-  let isSystemFile = filename => filename[0] == '.';
-  let notDirectory = filename =>
-    !fs.statSync(path.join(this.absPath, filename)).isDirectory();
-
-  let contentList = this.readdir();
-
-  let [systemContentList, normalContentList] = _.partition(contentList, isSystemFile);
-  let [systemFiles, systemDirs] = _.partition(systemContentList, notDirectory);
-  let [normalFiles, normalDirs] = _.partition(normalContentList, notDirectory);
-
-
-  let directoryFactory = filename =>
-    new Directory(this.srcRoot, this.destRoot, path.join(this.path, filename));
-  return {
-    systemFiles: _.map(systemFiles, directoryFactory),
-    systemDirs: _.map(systemDirs, directoryFactory),
-    files: _.map(normalFiles, directoryFactory),
-    dirs: _.map(normalDirs, directoryFactory)
-  };
-};
 
 module.exports = Directory;

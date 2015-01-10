@@ -26,6 +26,7 @@
     "lot-parser": "^0.3.2",
     "printf": "^0.2.0",
     "suspend": "^0.6.0",
+    "traceur": "0.0.79",
     "underscore": "^1.7.0"
   }
 }

@@ -5,9 +5,7 @@ var yaml = require('js-yaml');
 var path = require('path');
 
 function compileMetadata (context, files) {
-  console.log('Compiling metadata.');
-
-  let filteredFileList = files.filter(file => path.basename(file.path) == 'metadata.yml');
+  let filteredFileList = files.filter(file => file.basename == 'metadata.yml');
   if (filteredFileList.length == 0)
     return console.log('no metadata');
   

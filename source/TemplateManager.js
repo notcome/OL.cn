@@ -9,11 +9,11 @@ function TemplateManager (dirpath) {
   let dir = new Directory(dirpath);
 
   let {files} = dir.readdirAndSort();
-  let templateFiles = files.filter(file => path.basename(file.path).slice(-5) == '.jade');
+  let templateFiles = files.filter(file => file.basename.slice(-5) == '.jade');
   var templates = {};
 
   templateFiles.forEach(templateFile => {
-    let templateFilename = path.basename(templateFile.path);
+    let templateFilename = templateFile.basename;
     let name = templateFilename.slice(0, -path.extname(templateFilename).length);
 
     let compiler = TemplateCompiler.compile(templateFile.readTextFile());
