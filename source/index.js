@@ -37,14 +37,13 @@ function generate (dir) {
 
 function compileTerminal (dir) {
   let {files} = dir.readdirAndSort();
-
-  console.log('compiling', dir.basename);
-  
   let context = plugins.reduce((context, plugin) => plugin(context, files), {});
+  context = _.pick(context, 'title', 'author', 'tags');
+  context.terminal = true;
 
   return {
     key: dir.basename,
-    value: _.pick(context, 'title', 'author', 'tags')
+    value: context
   };
 }
 
@@ -61,7 +60,11 @@ function startCompile (src, dest) {
   fs.ensureDirSync('tmp');
   var tmpPath = newTempPath();
   var toc = generate(new Directory(src, tmpPath)).value;
-  console.log(JSON.stringify(toc, null, 2));
+  //console.log(JSON.stringify(toc, null, 2));
+
+  var makeTOCHtml = require('./makeTOCHtml');
+  var tocHTML = makeTOCHtml(toc);
+  fs.writeFileSync(tmpPath + '/index.html', tocHTML, 'utf8');
 
   var gravePath = newTempPath();
   if (fs.existsSync(dest))
