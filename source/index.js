@@ -9,42 +9,24 @@ var Directory = require('./Directory');
 
 function generate (dir) {
   dir.makeDestDir();
-
   let {files, dirs} = dir.readdirAndSort();
-
-  let isTerminal = files.reduce(
-    (previous, current) => previous || current.basename == 'terminal',
-    false);
-
-  let reducer = (previous, current) => {
-    previous[current.key] = current.value;
-    return previous;
-  }
-
-  if (isTerminal) {
-    _.map(dirs, dir => dir.makeDestDir());
-    return {
-      key: dir.basename,
-      value: _.reduce(_.map(dirs, compileTerminal), reducer, {})
-    };
-  }
-
-  return {
-    key: dir.basename,
-    value: _.reduce(_.map(dirs, generate), reducer, {})
-  };
+  let isTerminal = _.any(files, file => file.basename == 'terminal');
+  return [
+    dir.basename,
+    isTerminal ?
+      _.object(dirs.map(compileTerminal))
+    : _.object(dirs.map(generate))
+  ];
 }
 
 function compileTerminal (dir) {
+  dir.makeDestDir();
   let {files} = dir.readdirAndSort();
   let context = plugins.reduce((context, plugin) => plugin(context, files), {});
   context = _.pick(context, 'title', 'author', 'tags');
   context.terminal = true;
 
-  return {
-    key: dir.basename,
-    value: context
-  };
+  return [dir.basename, context];
 }
 
 function newTempPath () {
@@ -59,8 +41,7 @@ function newTempPath () {
 function startCompile (src, dest) {
   fs.ensureDirSync('tmp');
   var tmpPath = newTempPath();
-  var toc = generate(new Directory(src, tmpPath)).value;
-  //console.log(JSON.stringify(toc, null, 2));
+  var toc = generate(new Directory(src, tmpPath))[1];
 
   var makeTOCHtml = require('./makeTOCHtml');
   var tocHTML = makeTOCHtml(toc);
