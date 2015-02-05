@@ -1,0 +1,33 @@
+p 以下为巴斯克语的一组词组及其汉语翻译（乱序排列），部分词没有给出：
+
+ul(class='phrases semicolon-split')
+  each eus in mainEus
+    li(lang='eus-Latn')
+      = eus
+
+ul.min-13em-collapse
+  each cmn in mainCmn
+    li= cmn
+
+section.assignments: ul
+  li 将原文与译文正确对应起来并填空。
+
+  li
+    | 翻译成汉语：
+    br
+    ul(class='inline phrases semicolon-split')
+      each cmn in toEus
+        li= cmn
+    | 。
+
+  li
+    | 你认为巴斯克语中星期里的日子 
+    i.clear-right(lang='eus-Latn') astelehena
+    | 、
+    i(lang='eus-Latn') asteazkena
+    | 和
+    i(lang='eus-Latn') asteartea
+    | 字面翻译可能是怎样的？
+
+section.note
+  p 在巴斯克 (西班牙的一个自治区) 以及法国境内，有超过五十万人使用巴斯克语。巴斯克语目前未被证明与任何其他语言相关。

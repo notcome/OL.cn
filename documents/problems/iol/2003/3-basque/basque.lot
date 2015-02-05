@@ -1,0 +1,35 @@
+mainEus as [...] =
+---
+urtarrilaren hogeita hirugarrena, larunbata
+abenduaren azken astea
+otsailaren lehenengo osteguna
+ekainaren bederatzigarrena, igandea
+abenduaren lehena, ____
+irailaren azken asteazkena
+azaroaren hirugarren ostirala
+urriaren azken larunbata
+irailaren lehena, astelehena
+____ bigarrena, ostirala
+---
+
+mainCmn as [...] =
+---
+二月的第一个周四
+____的最后一个周三
+十二月一日，周三
+十二月的最后____
+六月九日，周日
+一月二十三日，____
+十月的最后一个周六
+十一月的第三个周五
+九月____，周一
+一月二日，周五
+---
+
+toEus as [...] =
+---
+十二月的第一个周一
+十一月二十九日，周六
+一月的第二周
+二月三日，周一
+---
