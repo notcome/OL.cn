@@ -51,6 +51,14 @@ i[lang$="Latn"] {
   margin: 0 0.25em;
 }
 
+i.clear-right[lang$="Latn"] {
+  margin-right: 0em;
+}
+
+i.clear-left[lang$="Latn"] {
+  margin-left: 0em;
+}
+
 main {
   width: 40rem;
   margin: auto;

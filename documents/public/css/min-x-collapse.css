@@ -3,3 +3,9 @@ ul.min-10em-collapse {
   -webkit-column-count: 4;
   column-count: 4;
 }
+
+ul.min-13em-collapse {
+  list-style-type: none;
+  -webkit-column-count: 3;
+  column-count: 3;
+}

@@ -18,10 +18,18 @@ ul.semicolon-split > li:after {
   content: "; "
 }
 
+ul.semicolon-split:lang(cmn-Hans-CN) > li:after {
+  content: "；"
+}
+
 ul.phrases > li:last-of-type::after {
   content: "";
 }
 
 ul.full-stop-end > li:last-of-type::after {
   content: ".";
+}
+
+ul.full-stop-end:lang(cmn-Hans-CN) > li:last-of-type::after {
+  content: "。";
 }
